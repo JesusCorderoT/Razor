@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+@ViewBag.bienv
+<br>
+@ViewBag.day
+
+
+
+@{
+    var OtrotipoSaludo = "";
+    if (DateTime.Now.Hour > 18)
+    { OtrotipoSaludo = "Buenas noches"; }
+    else if (DateTime.Now.Hour > 12)
+    { OtrotipoSaludo = "Buenos tardes"; }
+    else { OtrotipoSaludo = "Buenos días"; }
+    <p>@OtrotipoSaludo</p>
+}
+
+
+
+@{
+    var OtroTipo = "";
+    if (DateTime.Now.Hour > 5 && DateTime.Now.Hour < 12)
+    {
+        { OtroTipo = "Buenos Dias"; }
+    }
+    else if (DateTime.Now.Hour > 1 && DateTime.Now.Hour < 19)
+    {
+        OtroTipo = "Buenos Tardes";
+    }
+    else if (DateTime.Now.Hour > 20 && DateTime.Now.Hour < 4)
+    {
+        OtroTipo = "Buenas noches";
+    }
+    else
+    {
+        OtroTipo = "Error al obtener la hora";
+    }
+    <p>@OtroTipo</p>
+}
+
+<ol>
+    @{
+        var u = Request.Url;
+        <li>@u</li>
+    }
+</ol>
+
+<ol>
+    @{
+        var fp = Request.FilePath;
+        <li>@fp</li>
+    }
+</ol>
+
+<ol>
+    @{
+        var pi = Request.PathInfo;
+        <li>@pi</li>
+    }
+</ol>
+
+<ol>
+    @{
+        var rt = Request.RequestType;
+        <li>@rt</li>
+    }
+</ol>
+
+
+@*ESTO VA EN EL METODO CICLOS*@
+
+@{ int suma = 0;}
+
+@{
+    for (var i = 1; i <= 10; i++)
+    {
+        var id = "p" + i.ToString();
+        <p id="id">suma @id </p>
+        suma += i;
+    }
+    <p>suma @suma</p>
+}
+
+@{
+    var DiccionarioTerminos = new Dictionary<string, string>()
+{
+            {"Http","Es un protocolo de acceso ...."},
+            {"Clase","Es una plantilla para la creación de objetos..."},
+            {"HTML", "Es un lenguaje de marcado que se utiliza ..."}
+        };
+}
+<dl>
+    <dt>Http</dt>
+    <dd>@DiccionarioTerminos["Http"]</dd>
+    <dt>HTML</dt>
+    <dd>@DiccionarioTerminos["HTML"]</dd>
+    <dt>Clase</dt>
+    <dd>@DiccionarioTerminos["Clase"]</dd>
+</dl>
+
+
+<ol>
+    @{
+        foreach (var sv in Request.ServerVariables)
+        {
+            <li>@sv</li>
+        }
+
+
+    }
+</ol>
